@@ -1,0 +1,15 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="fazerLogin()">
+    <div>
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+    <div>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" [(ngModel)]="senha" name="senha" required>
+    </div>
+    <button type="submit">Entrar</button>
+  </form>
+  <span> Não tem uma conta? <a href="/cadastro-usuario">Cadastre-se</a></span>
+</div>

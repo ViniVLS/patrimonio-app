@@ -1,0 +1,15 @@
+<main>
+  <h1>Gestão de Patrimônio</h1>
+<div *ngIf="authService.isLoggedIn()">
+   <!-- <button (click)="carregarBens()">Carregar Bens</button> -->
+    <h3>Bens Cadastrados</h3>
+    <div *ngIf="bens.length > 0">
+      <ul>
+        <li *ngFor="let bem of bens">
+          {{ bem.codigo }} - {{ bem.descricao }}
+        </li>
+      </ul>
+    </div>
+    <p *ngIf="bens.length === 0">Nenhum bem cadastrado.</p>
+  </div>
+  </main>
