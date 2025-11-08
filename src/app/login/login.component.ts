@@ -13,24 +13,22 @@ import { AuthService } from '../seguranca/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  email = 'admin@patrimonio.com';
+  email = 'user-a@teste.com';
   senha = '123456';
 
   constructor(
     private authService: AuthService, private router: Router
   ) { }
 
-  fazerLogin() {
-    this.authService.login(this.email, this.senha).subscribe({
-      next: () => {
-        console.log('Login bem-sucedido');
-        this.router.navigate(['/bens']);// Redireciona para a página de bens após o login
-        alert('Login Efetuado.');
-      },
-      error: (err) => {
-        console.error('Erro ao fazer login:', err);
-        alert('Falha no login. Verifique suas credenciais.');
-      }
-    });
+  async fazerLogin() {
+    try {
+      await this.authService.login(this.email, this.senha);
+      console.log('Login bem-sucedido');
+      this.router.navigate(['/bens']);// Redireciona para a página de bens após o login
+      alert('Login Efetuado.');
+    } catch (err) {
+      console.error('Erro ao fazer login:', err);
+      alert('Falha no login. Verifique suas credenciais.');
+    }
   }
 }

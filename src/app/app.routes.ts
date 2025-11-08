@@ -1,12 +1,17 @@
+// src/app/app.routes.ts (JÁ ESTÁ CORRETO)
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AppComponent } from './app.component';
 import { BensComponent } from './bens/bens.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { authGuard } from './seguranca/auth.guard';
 
 export const routes: Routes = [
-  { path : 'login', component: LoginComponent},
-  { path: 'bens', component: BensComponent }, // Agora, a rota principal exibe o BensComponent
+  { path: 'login', component: LoginComponent },
   { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
-  { path: '', component: LoginComponent } // Rota padrão redireciona para login,
+  {
+    path: 'bens',
+    component: BensComponent,
+    canActivate: [authGuard]
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

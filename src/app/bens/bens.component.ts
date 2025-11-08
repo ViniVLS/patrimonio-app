@@ -1,34 +1,35 @@
-import { Component } from '@angular/core';
+// src/app/bens/bens.component.ts
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BensService } from './bens.service';
 import { AuthService } from '../seguranca/auth.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bens',
-   standalone: true,
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './bens.component.html',
   styleUrl: './bens.component.css'
 })
-export class BensComponent {
+export class BensComponent implements OnInit {
 
-   bens: any[] = [];
-   title = 'patrimonio-app';
+  bens: any[] = [];
 
   constructor(
     private bensService: BensService,
     public authService: AuthService
-  ) {
-    if (this.authService.isLoggedIn()) {
-      this.carregarBens();
+  ) {}
 
-    }}
+  ngOnInit() {
+    // Carrega os bens apenas quando o componente estiver inicializado
+    this.carregarBens();
+  }
 
-    carregarBens() {
+  carregarBens() {
     this.bensService.listarBens().subscribe({
       next: (dados) => {
         this.bens = dados;
-        console.log('Dados do backend:', this.bens);
+        console.log('Dados do Supabase:', this.bens);
       },
       error: (error) => {
         console.error('Falha ao carregar bens:', error);
@@ -36,4 +37,3 @@ export class BensComponent {
     });
   }
 }
-
