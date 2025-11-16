@@ -1,0 +1,96 @@
+/* Container Principal: Centraliza o conteúdo na tela */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    background-color: #f0f2f5; /* Fundo cinza claro */
+    font-family: Arial, sans-serif;
+}
+
+/* Cartão de Login: Onde o formulário reside */
+.login-card {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+/* Título e Logo */
+.logo-area h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* Grupos de Formulário */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* Campos de Input */
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff; /* Cor primária ao focar */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Botão de Entrar */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Verde agradável */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #218838;
+}
+
+/* Link de Cadastro */
+.cadastro-link {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.cadastro-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.cadastro-link a:hover {
+    text-decoration: underline;
+}

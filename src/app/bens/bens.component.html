@@ -1,15 +1,69 @@
-<main>
-  <h1>Gestão de Patrimônio</h1>
-<div *ngIf="authService.isLoggedIn()">
-   <!-- <button (click)="carregarBens()">Carregar Bens</button> -->
-    <h3>Bens Cadastrados</h3>
-    <div *ngIf="bens.length > 0">
-      <ul>
-        <li *ngFor="let bem of bens">
-          {{ bem.codigo }} - {{ bem.descricao }}
-        </li>
-      </ul>
-    </div>
-    <p *ngIf="bens.length === 0">Nenhum bem cadastrado.</p>
-  </div>
-  </main>
+<div class="main-patrimonio-container">
+
+    <header class="app-header">
+        <h1>Gestão de Patrimônio</h1>
+        <div class="user-info">
+            Olá, <strong>{{ nomeUsuario | titlecase }}</strong>!
+            </div>
+    </header>
+<button [routerLink]="['/login']" class="btn-novo-bem"> Sair </button>
+    <hr>
+
+    <section class="dashboard-grid">
+        <div class="card total">
+            <h3>Bens Cadastrados</h3>
+            <p>{{ dashboard.total }}</p>
+        </div>
+        <div class="card em-uso">
+            <h3>Em Uso</h3>
+            <p>{{ dashboard.emUso }}</p>
+        </div>
+        <div class="card ocioso">
+            <h3>Ocioso</h3>
+            <p>{{ dashboard.ocioso }}</p>
+        </div>
+    </section>
+
+    <section class="listagem-bens">
+        <div class="header-listagem">
+            <h3>Sua Coleção de Bens</h3>
+            <button [routerLink]="['/bens/cadastro']" class="btn-novo-bem">
+                + Adicionar Novo
+            </button>
+        </div>
+
+        <div *ngIf="bens.length > 0; else semBens">
+            <table class="tabela-bens">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>CÓDIGO</th>
+                        <th>DESCRIÇÃO</th>
+                        <th>CATEGORIA</th>
+                        <th>SITUAÇÃO</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bem of bens; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ bem.codigo }}</td>
+                        <td>{{ bem.descricao }}</td>
+                        <td>{{ bem.categoria }}</td>
+                        <td>{{ bem.situacao }}</td>
+                        <td class="acao-botoes">
+                            <button (click)="editarBem(bem.id)" class="btn-acao editar">Editar</button>
+                            <button (click)="excluirBem(bem.id)" class="btn-acao excluir">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ng-template #semBens>
+            <p class="aviso-vazio">Nenhum bem cadastrado. Comece adicionando um novo item!</p>
+        </ng-template>
+
+    </section>
+</div>
+

@@ -1,0 +1,52 @@
+.cadastro-pj-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .section-pj, .section-acesso {
+    flex: 1 1 48%;
+    min-width: 300px;
+  }
+  .section-endereco {
+      flex: 1 1 100%;
+  }
+  .form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .input-full {
+    grid-column: 1 / -1;
+  }
+  .alert-erro-senha {
+    grid-column: 1 / -1;
+    color: #dc3545;
+    font-size: 0.85em;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .termo-aceite {
+    margin-top: 15px;
+  }
+  .form-actions {
+    padding-top: 20px;
+    text-align: right;
+  }
+  .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .erro-msg {
+    color: #dc3545;
+    font-size: 0.8em;
+  }

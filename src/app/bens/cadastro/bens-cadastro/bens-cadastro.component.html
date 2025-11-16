@@ -1,0 +1,124 @@
+<div class="cadastro-bens-container">
+  <h1>{{ isEdicao ? 'Editar Bem' : 'Cadastro de Novo Bem' }}</h1>
+
+  <form [formGroup]="formCadastro" (ngSubmit)="cadastrarOuAtualizar()">
+
+    <fieldset>
+      <legend>Identificação Principal</legend>
+
+      <div>
+        <label for="codigo">Código do Bem (QR/Barra):</label>
+        <input id="codigo" formControlName="codigo" type="text">
+        <div *ngIf="formCadastro.get('codigo')?.hasError('required') && formCadastro.get('codigo')?.touched" class="erro">
+          O Código é obrigatório.
+        </div>
+      </div>
+
+      <div>
+        <label for="descricao">Descrição:</label>
+        <input id="descricao" formControlName="descricao" type="text">
+        <div *ngIf="formCadastro.get('descricao')?.hasError('required') && formCadastro.get('descricao')?.touched" class="erro">
+          A Descrição é obrigatória.
+        </div>
+      </div>
+
+      <div>
+        <label for="numero_patrimonio">Número de Patrimônio:</label>
+        <input id="numero_patrimonio" formControlName="numero_patrimonio" type="text">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Detalhes Técnicos</legend>
+
+      <div>
+        <label for="numero_serie">Número de Série:</label>
+        <input id="numero_serie" formControlName="numero_serie" type="text">
+      </div>
+
+      <div>
+        <label for="fabricante">Fabricante:</label>
+        <input id="fabricante" formControlName="fabricante" type="text">
+      </div>
+
+      <div>
+        <label for="modelo">Modelo:</label>
+        <input id="modelo" formControlName="modelo" type="text">
+      </div>
+
+      <div>
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="">Selecione a Categoria</option>
+          <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+        </select>
+        <div *ngIf="formCadastro.get('categoria')?.hasError('required') && formCadastro.get('categoria')?.touched" class="erro">
+          A Categoria é obrigatória.
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Situação e Valores</legend>
+
+      <div>
+        <label for="responsavel">Responsável / Usuário:</label>
+        <input id="responsavel" formControlName="responsavel" type="text">
+        <div *ngIf="formCadastro.get('responsavel')?.hasError('required') && formCadastro.get('responsavel')?.touched" class="erro">
+          O nome do Responsável é obrigatório.
+        </div>
+      </div>
+
+      <div>
+        <label for="localizacao">Localização:</label>
+        <input id="localizacao" formControlName="localizacao" type="text">
+      </div>
+
+      <div>
+        <label for="situacao">Situação Atual:</label>
+        <select id="situacao" formControlName="situacao">
+          <option *ngFor="let sit of situacoes" [value]="sit">{{ sit }}</option>
+        </select>
+        <div *ngIf="formCadastro.get('situacao')?.hasError('required') && formCadastro.get('situacao')?.touched" class="erro">
+          A Situação é obrigatória.
+        </div>
+      </div>
+
+      <div>
+        <label for="data_aquisicao">Data de Aquisição:</label>
+        <input id="data_aquisicao" formControlName="data_aquisicao" type="date">
+        <div *ngIf="formCadastro.get('data_aquisicao')?.hasError('required') && formCadastro.get('data_aquisicao')?.touched" class="erro">
+          A Data de Aquisição é obrigatória.
+        </div>
+      </div>
+
+      <div>
+        <label for="valor">Valor (R$):</label>
+        <input id="valor" formControlName="valor" type="number" min="0">
+        <div *ngIf="formCadastro.get('valor')?.hasError('required') && formCadastro.get('valor')?.touched" class="erro">
+          O Valor é obrigatório.
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Observações</legend>
+      <div>
+        <label for="observacoes">Observações Detalhadas:</label>
+        <textarea id="observacoes" formControlName="observacoes" rows="3"></textarea>
+      </div>
+      <div>
+        <label for="foto_url">URL da Foto:</label>
+        <input id="foto_url" formControlName="foto_url" type="url">
+      </div>
+    </fieldset>
+
+    <div class="botoes-acao">
+      <button type="submit" [disabled]="formCadastro.invalid">
+        <span *ngIf="!isEdicao">Salvar Bem</span>
+        <span *ngIf="isEdicao">Atualizar Bem</span>
+      </button>
+      <button type="button" [routerLink]="['/bens']">Cancelar</button>
+    </div>
+  </form>
+</div>

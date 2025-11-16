@@ -1,15 +1,28 @@
 <div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="fazerLogin()">
-    <div>
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+  <div class="login-card">
+
+    <div class="logo-area">
+      <h2>Acesso ao Patrimônio</h2>
     </div>
-    <div>
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" [(ngModel)]="senha" name="senha" required>
+
+    <form (ngSubmit)="fazerLogin()">
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="seu.email@empresa.com">
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" [(ngModel)]="senha" name="senha" required placeholder="******">
+      </div>
+
+      <button type="submit" class="btn-login">Entrar</button>
+    </form>
+
+    <div class="cadastro-link">
+      <span>Não tem uma conta?</span>
+      <a [routerLink]="['/cadastro-usuario']">Cadastre-se</a>
     </div>
-    <button type="submit">Entrar</button>
-  </form>
-  <span> Não tem uma conta? <a href="/src/app/cadastro-usuario/cadastro-usuario.component.html">Cadastre-se</a></span>
+  </div>
 </div>

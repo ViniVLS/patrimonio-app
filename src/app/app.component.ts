@@ -1,46 +1,43 @@
 // src/app/app.component.ts
 
-import { Component, AfterViewInit } from '@angular/core';
-import { RouterOutlet, Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core'; // Usar OnInit é melhor
+import { RouterOutlet, Router } from '@angular/router'; // Não precisa mais de RouterLink aqui
 import { CommonModule } from '@angular/common';
 
-// CORREÇÃO FINAL: O caminho deve ser para a subpasta 'bens'
 import { BensService } from './bens/bens.service';
 import { AuthService } from './seguranca/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterLink],
+  // CORREÇÃO: Removendo RouterLink daqui, pois ele não é usado no JS
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit { // Implementar OnInit
   bens: any[] = [];
 
   constructor(
     private bensService: BensService,
     public authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    // CORREÇÃO: O construtor deve estar vazio
+  }
 
-  ngAfterViewInit() {
-    // Garante que o Angular terminou de montar a view antes de verificar a sessão
-    if (!this.authService.isLoggedIn()) {
-      // Se não estiver logado, redireciona imediatamente para a tela de login
-      this.router.navigate(['/login']);
-    } else {
-      // Se estiver logado, carrega os bens
+  ngOnInit() {
+    // CORREÇÃO: A lógica de redirecionamento fica no AuthGuard.
+    // O AppComponent só carrega os bens SE o Guard permitir e o usuário estiver logado.
+    if (this.authService.isLoggedIn()) {
       this.carregarBens();
     }
   }
 
-  // MÉTODO PARA CARREGAR OS BENS (para teste)
   carregarBens() {
     this.bensService.listarBens().subscribe({
-      next: (dados) => {
+      next: (dados: any[]) => {
         this.bens = dados;
-        console.log('Bens carregados:', this.bens);
       },
       error: (error) => {
         console.error('Falha ao carregar bens:', error);

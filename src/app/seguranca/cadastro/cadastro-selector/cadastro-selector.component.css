@@ -1,0 +1,53 @@
+.selector-container {
+  max-width: 950px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.selector-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.selector-header h1 {
+  margin-bottom: 5px;
+}
+.selector-header p {
+  font-size: 1.1em;
+  color: #555;
+}
+.perfil-selector {
+  display: flex;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+}
+.perfil-selector button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  transition: background-color 0.3s, border-color 0.3s;
+  color: #666;
+  border-bottom: 4px solid transparent;
+  font-size: 1.1em;
+}
+.perfil-selector button.active {
+  color: #007bff;
+  border-bottom: 4px solid #007bff;
+}
+.perfil-selector button:hover:not(.active) {
+  background-color: #f8f9fa;
+}
+.icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+.link-voltar {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 500;
+}

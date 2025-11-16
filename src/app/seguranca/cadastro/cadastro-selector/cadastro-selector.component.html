@@ -1,0 +1,38 @@
+<div class="selector-container">
+
+  <div class="selector-header">
+    <h1>Novo Cadastro</h1>
+    <p>Selecione o tipo de perfil para continuar.</p>
+  </div>
+
+  <div class="perfil-selector">
+    <button
+      (click)="alternarTipo('pf')"
+      [class.active]="tipoUsuario === 'pf'">
+      <span class="icon">👤</span> Pessoa Física
+    </button>
+    <button
+      (click)="alternarTipo('pj')"
+      [class.active]="tipoUsuario === 'pj'">
+      <span class="icon">🏢</span> Pessoa Jurídica
+    </button>
+  </div>
+
+  <div class="form-display">
+
+    <app-pessoa-fisica-form
+      *ngIf="tipoUsuario === 'pf'"
+      (dadosCadastro)="receberDados($event)">
+      </app-pessoa-fisica-form>
+
+    <app-pessoa-juridica-form
+      *ngIf="tipoUsuario === 'pj'"
+      (dadosCadastro)="receberDados($event)">
+      </app-pessoa-juridica-form>
+  </div>
+
+  <div class="link-voltar">
+    <a [routerLink]="['/login']">Já tenho uma conta? Voltar para Login</a>
+  </div>
+
+</div>

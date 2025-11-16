@@ -1,0 +1,123 @@
+<form [formGroup]="cadastroPFForm" (ngSubmit)="enviarDados()">
+  <div class="cadastro-pf-grid">
+
+    <fieldset class="section-pf">
+      <legend>Informações Pessoais (Pessoa Física)</legend>
+      <div class="form-group-grid">
+
+        <div class="input-full">
+          <label for="nomeCompleto">Nome Completo *</label>
+          <input id="nomeCompleto" formControlName="nomeCompleto" type="text">
+          <div *ngIf="cadastroPFForm.get('nomeCompleto')?.invalid && cadastroPFForm.get('nomeCompleto')?.touched" class="erro-msg">
+            Nome completo é obrigatório.
+          </div>
+        </div>
+
+        <div>
+          <label for="cpf">CPF *</label>
+          <input id="cpf" formControlName="cpf" type="text" placeholder="000.000.000-00">
+          <div *ngIf="cadastroPFForm.get('cpf')?.invalid && cadastroPFForm.get('cpf')?.touched" class="erro-msg">
+            CPF inválido ou obrigatório.
+          </div>
+        </div>
+
+        <div>
+          <label for="dataNascimento">Data de Nascimento *</label>
+          <input id="dataNascimento" formControlName="dataNascimento" type="date">
+          <div *ngIf="cadastroPFForm.get('dataNascimento')?.invalid && cadastroPFForm.get('dataNascimento')?.touched" class="erro-msg">
+            Data de nascimento é obrigatória.
+          </div>
+        </div>
+
+        <div>
+          <label for="telefoneCelular">Telefone Celular *</label>
+          <input id="telefoneCelular" formControlName="telefoneCelular" type="tel" placeholder="(99) 99999-9999">
+          <div *ngIf="cadastroPFForm.get('telefoneCelular')?.invalid && cadastroPFForm.get('telefoneCelular')?.touched" class="erro-msg">
+            Telefone é obrigatório.
+          </div>
+        </div>
+
+        <div>
+          <label for="sexo">Sexo *</label>
+          <select id="sexo" formControlName="sexo">
+            <option value="">Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+          <div *ngIf="cadastroPFForm.get('sexo')?.invalid && cadastroPFForm.get('sexo')?.touched" class="erro-msg">
+            Sexo é obrigatório.
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="section-endereco">
+      <legend>Endereço e Acesso</legend>
+      <div class="form-group-grid">
+
+        <div class="input-full">
+          <label for="email">E-mail *</label>
+          <input id="email" formControlName="email" type="email">
+          <div *ngIf="cadastroPFForm.get('email')?.invalid && cadastroPFForm.get('email')?.touched" class="erro-msg">
+            E-mail inválido ou obrigatório.
+          </div>
+        </div>
+
+        <div>
+          <label for="senha">Senha *</label>
+          <input id="senha" formControlName="senha" type="password">
+          <div *ngIf="cadastroPFForm.get('senha')?.invalid && cadastroPFForm.get('senha')?.touched" class="erro-msg">
+            Senha obrigatória (mínimo 6 caracteres).
+          </div>
+        </div>
+
+        <div>
+          <label for="confirmacaoSenha">Confirme a Senha *</label>
+          <input id="confirmacaoSenha" formControlName="confirmacaoSenha" type="password">
+          <div *ngIf="cadastroPFForm.get('confirmacaoSenha')?.touched && cadastroPFForm.errors?.['mismatch']" class="alert-erro-senha">
+            As senhas digitadas não coincidem.
+          </div>
+        </div>
+
+        <div class="endereco-grid">
+          <label for="cep" class="input-full">CEP *</label>
+          <input id="cep" formControlName="cep" type="text">
+
+          <label for="uf" class="input-label-uf">UF *</label>
+          <select id="uf" formControlName="uf" class="input-select-uf">
+            <option value="">UF</option>
+            <option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</option>
+          </select>
+
+          <label for="logradouro" class="input-full">Logradouro (Rua, Avenida) *</label>
+          <input id="logradouro" formControlName="logradouro" type="text" class="input-full">
+
+          <label for="numero">Número *</label>
+          <input id="numero" formControlName="numero" type="text">
+
+          <label for="bairro">Bairro *</label>
+          <input id="bairro" formControlName="bairro" type="text">
+
+          <label for="cidade" class="input-full">Cidade *</label>
+          <input id="cidade" formControlName="cidade" type="text" class="input-full">
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <div class="termo-aceite">
+        <input id="aceiteTermos" formControlName="aceiteTermos" type="checkbox">
+        <label for="aceiteTermos">Li e aceito os Termos de Uso *</label>
+        <div *ngIf="cadastroPFForm.get('aceiteTermos')?.invalid && cadastroPFForm.get('aceiteTermos')?.touched" class="erro-msg">
+            Você deve aceitar os termos.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="cadastroPFForm.invalid" class="btn-submit">
+        Finalizar Cadastro
+      </button>
+    </div>
+
+  </div>
+</form>
+
